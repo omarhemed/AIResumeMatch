@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import './UploadForm.css'; // Import CSS file for styling
 
 function UploadForm() {
-  const [file, setFile] = useState(null); // State to store the selected file
-  const [jobDescription, setJobDescription] = useState(""); // State for job description
-  const [message, setMessage] = useState(""); // State to display upload messages
+  const [file, setFile] = useState(null);
+  const [jobDescription, setJobDescription] = useState("");
+  const [message, setMessage] = useState("");
+  const [analysis, setAnalysis] = useState("");
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -28,10 +30,10 @@ function UploadForm() {
 
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("job_description", jobDescription); // Add job description to the form data
+    formData.append("job_description", jobDescription);
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/upload-resume", {
+      const response = await fetch("http://127.0.0.1:5000/upload-and-analyze", {
         method: "POST",
         body: formData,
       });
@@ -42,7 +44,12 @@ function UploadForm() {
 
       const data = await response.json();
       setMessage(`Upload successful: ${data.message}`);
-      console.log(data); // Log the response to the console
+      console.log(data);
+
+      const analysisData = data.analysis.split("\n").map((line, index) => {
+        return <li key={index}>{line}</li>;
+      });
+      setAnalysis(analysisData);
     } catch (error) {
       console.error("Error uploading file:", error);
       setMessage("Error uploading file. Please try again.");
@@ -50,28 +57,38 @@ function UploadForm() {
   };
 
   return (
-    <div>
-      <h2>Upload Resume and Job Description Below!</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Resume:
-            <input type="file" onChange={handleFileChange} />
+    <div className="upload-form-container">
+      <h2>Upload Your Resume and Job Description</h2>
+      <form onSubmit={handleSubmit} className="upload-form">
+        <div className="file-input-container">
+          <label htmlFor="resume">
+            <strong>Resume:</strong>
+            <input type="file" id="resume" onChange={handleFileChange} />
           </label>
         </div>
-        <div>
-          <label>
-            Job Description:
+        <div className="description-input-container">
+          <label htmlFor="jobDescription">
+            <strong>Job Description:</strong>
             <textarea
+              id="jobDescription"
               placeholder="Paste job description here..."
               value={jobDescription}
               onChange={handleDescriptionChange}
             />
           </label>
         </div>
-        <button type="submit">Upload</button>
+        <button type="submit" className="submit-button">RUN!</button>
       </form>
-      {message && <p>{message}</p>} {/* Display upload messages */}
+      {message && <p className="message">{message}</p>}
+
+      {analysis && (
+        <div className="analysis-container">
+          <h3>Analysis Result:</h3>
+          <ul className="analysis-list">
+            {analysis}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

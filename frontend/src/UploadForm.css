@@ -1,0 +1,117 @@
+/* General body styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  /* Main container for the upload form */
+  .upload-form-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Header styling */
+  h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Form layout */
+  .upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .file-input-container,
+  .description-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  
+  label {
+    font-weight: 600;
+    color: #444;
+  }
+  
+  input[type="file"],
+  textarea {
+    width: 160%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 14px;
+  }
+  
+  textarea {
+    resize: vertical;
+    height: 150px;
+  }
+  
+  /* Button styling */
+  .submit-button {
+    padding: 12px 24px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Message and result styling */
+  .message {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #4CAF50;
+    font-weight: 600;
+  }
+  
+  .analysis-container {
+    margin-top: 30px;
+    text-align: left;
+    font-size: 16px;
+  }
+  
+  .analysis-list {
+    list-style-type: disc;
+    padding-left: 10px;
+  }
+  
+  .analysis-list li {
+    margin-bottom: 10px;
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 600px) {
+    .upload-form-container {
+      padding: 15px;
+      margin: 10px;
+    }
+  
+    h2 {
+      font-size: 24px;
+    }
+  
+    .submit-button {
+      font-size: 14px;
+      padding: 10px 20px;
+    }
+  }
+  
