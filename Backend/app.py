@@ -59,10 +59,13 @@ def analyze_resume_with_gpt(resume_text, job_description):
     {resume_text}
     
     Tasks:
-    1. Rate the resume's relevance to the job description on a scale of 0-100%.
-    2. Provide specific feedback on how the resume could be improved to better match the job description.
-    3. Suggest additional skills or experiences the candidate should emphasize or acquire.
-    4. Make sure to provide these results in short sentences and make them straight to the point.
+    - Rate the resume's relevance to the job description on a scale of 0 to 100%.
+    - If the job description is not a job description, respond with: "Please share a job description."
+    - If the resume is not a valid resume (e.g., it doesn't contain relevant experience or is unrelated), respond with: "Please share a valid resume."
+    - If the resume is missing skills, provide them in bullet points clearly.
+    - Provide specific feedback on how the resume could be improved to better match the job description.
+    - Suggest additional skills or experiences the candidate should emphasize or acquire.
+    - Provide the results in short, straight-to-the-point sentences.
     """
     try:
         # Updated API call
