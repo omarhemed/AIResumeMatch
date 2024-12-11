@@ -119,3 +119,7 @@ npm start
 - Open your browser and go to 'http://localhost:3000' to access the app.
 - Upload your resume and paste a job description.
 - Hit RUN and watch the magic happen as the tool analyzes the relevance of your resume to the job description and provides valuable feedback!
+
+
+### Note:
+- The provided API Key may not be active when running the program on your local machine. To test it, please generate a new API Key from OpenAI or contact me at omarhemed1@hotmail.com to request access to my API Key.
